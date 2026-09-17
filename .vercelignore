@@ -1,7 +1,12 @@
 venv/
 .venv/
 __pycache__/
-*.pyc
+*.py[cod]
 .git/
 .gitignore
 data/cicids_dataset.csv
+model/global_model_round_*.pt
+fai_ids.db
+1.md
+spec.md3.txt
+requirements-full.txt
