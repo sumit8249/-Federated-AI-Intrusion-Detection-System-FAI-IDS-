@@ -1,0 +1,24 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Local SQLite Database & Checkpoints
+*.db
+*.sqlite3
+
+# Large dataset raw CSV (reproducible via python data/generate_cicids_subset.py)
+# data/cicids_dataset.csv
+
+# IDE & OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

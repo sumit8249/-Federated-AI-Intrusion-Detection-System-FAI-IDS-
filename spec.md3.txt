@@ -1,0 +1,489 @@
+﻿1. Project Overview
+
+A Federated AI Intrusion Detection System (FAI-IDS) is a privacy-preserving cybersecurity framework where multiple organizations (clients) collaboratively train an intrusion detection model without sharing their raw network traffic data.
+
+Instead of sending sensitive data to a central server, each client trains the AI model locally and sends only encrypted model parameters to a central aggregation server using Flower Federated Learning Framework.
+
+Problem Statement
+
+Traditional Intrusion Detection Systems require centralized collection of network traffic logs, creating:
+
+Privacy risks.
+
+High bandwidth usage.
+
+Data ownership issues.
+
+Compliance challenges.
+
+This project solves these issues using Federated Learning.
+
+Proposed Solution
+
+Local IDS models train on each client's data.
+
+Flower server aggregates weights using FedAvg.
+
+Global model improves after every training round.
+
+Raw network packets never leave local devices.
+
+2. Project Specification Sheet
+
+Project Name
+
+	Federated AI Intrusion Detection System (FAI-IDS)
+
+
+Project Type
+
+	Major Final Year Project
+
+
+Domain
+
+	Cybersecurity + AI + Federated Learning
+
+
+Platform
+
+	Python Desktop/Web
+
+
+Language
+
+	Python 3.11+
+
+
+Framework
+
+	Flower Federated Learning Framework
+
+
+Deep Learning Library
+
+	PyTorch
+
+
+Dataset
+
+	CICIDS2017
+
+
+Database
+
+	SQLite / PostgreSQL (Logs)
+
+
+Deployment
+
+	Localhost / Docker / Linux
+
+
+No. of Clients
+
+	3â€“10 simulated organizations
+3. Technology Stack
+Component	Technology
+Programming	Python 3.11
+Machine Learning	PyTorch
+Federated Learning	Flower
+Data Processing	Pandas, NumPy
+Visualization	Matplotlib, Plotly
+Dashboard	Streamlit / Flask
+Database	SQLite / PostgreSQL
+API	FastAPI / Flask REST API
+Containerization	Docker
+Version Control	Git & GitHub
+4. System Architecture
+4
+Architecture Flow
+
+Client Organizations
+
+Hospital, Bank, University, Company
+
+Local AI Model Training
+
+PyTorch trains independently on each client's local CICIDS data.
+
+Share Only Model Parameters
+
+No raw network traffic leaves the client.
+
+Flower Aggregation Server
+
+FedAvg combines weights into a new global model.
+
+Global Model Sent Back
+
+Updated model returns to every client for the next round.
+5. Modules
+Module	Description
+Data Collection	Load CICIDS2017 dataset and split across clients.
+Preprocessing	Normalize features, encode labels, remove missing values.
+Local Training	Train intrusion detection neural network locally.
+Federated Server	Aggregate model parameters using FedAvg.
+Threat Detection	Predict attack categories.
+Dashboard	Display detected attacks, accuracy, logs, graphs.
+Alert System	Generate intrusion alerts.
+6. Dataset Specification â€” CICIDS2017
+5
+Dataset Details
+
+Dataset Name
+
+	CICIDS2017
+
+
+Source
+
+	Canadian Institute for Cybersecurity
+
+
+Records
+
+	2.8+ Million Network Flows
+
+
+Features
+
+	80+ Network Traffic Features
+
+
+Classes
+
+	15 Attack Types + Benign Traffic
+Sample Attack Types
+Attack	Description
+DoS Hulk	Denial of Service attack.
+DDoS	Distributed denial of service.
+PortScan	Network port scanning.
+Brute Force FTP	Password guessing attack.
+SSH Brute Force	Unauthorized SSH login attempts.
+Botnet	Malicious infected devices.
+Web Attack	SQL Injection, XSS, etc.
+Heartbleed	OpenSSL vulnerability exploit.
+Important Features
+Flow Duration	Total Packet Length
+Destination Port	Protocol Type
+Flow Bytes/sec	Flow Packets/sec
+Fwd Packet Length Mean	Bwd Packet Length Mean
+Active Mean	Idle Mean
+7. Functional Requirements
+Admin Functions
+
+Start Flower Server.
+
+Register clients.
+
+Monitor training rounds.
+
+View global accuracy.
+
+View detected attacks.
+
+Export intrusion logs.
+
+Client Functions
+
+Train local model.
+
+Receive updated model.
+
+Predict attacks.
+
+Send model weights only.
+
+Dashboard Features
+5
+
+Live attack count.
+
+Accuracy graph.
+
+Loss graph.
+
+Confusion matrix.
+
+Attack distribution pie chart.
+
+Client-wise performance.
+
+8. Non-Functional Requirements
+Requirement	Description
+Privacy	No raw data sharing.
+Security	Encrypted communication between server and clients.
+Scalability	Add new organizations without retraining from scratch.
+Reliability	Fault-tolerant federated rounds.
+Performance	High attack detection accuracy.
+9. Hardware Requirements
+
+Processor
+
+	Intel i5 / Ryzen 5 or above
+
+
+RAM
+
+	8 GB minimum (16 GB recommended)
+
+
+Storage
+
+	25 GB free space
+
+
+GPU
+
+	Optional (NVIDIA GTX/RTX recommended)
+
+
+Network
+
+	Internet or Localhost Simulation
+10. Software Requirements
+
+Operating System
+
+	Windows 11 / Ubuntu 22.04
+
+
+Python
+
+	3.11+
+
+
+IDE
+
+	VS Code / PyCharm
+
+
+Libraries
+
+	PyTorch, Flower, Pandas, NumPy, Streamlit, Scikit-learn, Matplotlib
+
+
+Database
+
+	SQLite/PostgreSQL
+
+
+Docker
+
+	Latest Version
+11. Machine Learning Model
+5
+Model Architecture
+
+Input Layer
+
+	80 Network Features
+
+
+Hidden Layer 1
+
+	128 Neurons + ReLU
+
+
+Hidden Layer 2
+
+	64 Neurons + ReLU
+
+
+Dropout
+
+	0.3
+
+
+Output Layer
+
+	Multi-class Attack Prediction
+
+
+Loss Function
+
+	CrossEntropyLoss
+
+
+Optimizer
+
+	Adam
+Federated Algorithm
+
+FedAvg (Federated Averaging)
+
+Steps:
+
+Initialize global model.
+
+Send global weights to clients.
+
+Clients train locally.
+
+Clients send updated weights.
+
+Server averages weights.
+
+Repeat for multiple rounds.
+
+12. Project Workflow
+5
+
+Step 1
+
+	Load CICIDS2017 Dataset.
+
+
+Step 2
+
+	Split dataset among multiple simulated organizations.
+
+
+Step 3
+
+	Preprocess and normalize features.
+
+
+Step 4
+
+	Train local models.
+
+
+Step 5
+
+	Aggregate parameters at Flower server.
+
+
+Step 6
+
+	Evaluate global model.
+
+
+Step 7
+
+	Display intrusion detection dashboard.
+13. Expected Output Screens
+Login Dashboard
+5
+Training Dashboard
+4
+Intrusion Detection Dashboard
+6
+Attack Prediction Result
+6
+14. Database Design
+Tables
+Table	Purpose
+Clients	Store organization/client details.
+TrainingLogs	Accuracy, loss, training round.
+AttackLogs	Detected attack information.
+GlobalModel	Store aggregated model versions.
+Predictions	Store prediction history.
+15. Evaluation Metrics
+
+Accuracy
+
+	Overall prediction accuracy.
+
+
+Precision
+
+	Correct positive attack predictions.
+
+
+Recall
+
+	Attack detection capability.
+
+
+F1 Score
+
+	Balanced performance metric.
+
+
+Confusion Matrix
+
+	Multi-class prediction comparison.
+
+
+ROC Curve
+
+	Classification performance visualization.
+16. Advantages
+
+Privacy-preserving training.
+
+No centralized data collection.
+
+Suitable for banks, hospitals, IoT, universities.
+
+Lower bandwidth than centralized training.
+
+Supports multiple organizations.
+
+Better compliance with data privacy policies.
+
+Applications
+
+Banking
+
+	Detect fraud and cyber attacks.
+
+
+Hospitals
+
+	Protect patient network traffic.
+
+
+Universities
+
+	Monitor campus network attacks.
+
+
+IoT Networks
+
+	Smart home and industrial IoT security.
+
+
+Cloud Infrastructure
+
+	Collaborative cloud intrusion detection.
+17. Project Folder Structure
+FAI_IDS/
+â”‚
+â”œâ”€â”€ server/
+â”‚   â”œâ”€â”€ server.py
+â”‚   â”œâ”€â”€ strategy.py
+â”‚
+â”œâ”€â”€ clients/
+â”‚   â”œâ”€â”€ client1.py
+â”‚   â”œâ”€â”€ client2.py
+â”‚   â”œâ”€â”€ client3.py
+â”‚
+â”œâ”€â”€ model/
+â”‚   â”œâ”€â”€ model.py
+â”‚   â”œâ”€â”€ train.py
+â”‚   â”œâ”€â”€ evaluate.py
+â”‚
+â”œâ”€â”€ data/
+â”‚   â”œâ”€â”€ preprocess.py
+â”‚   â”œâ”€â”€ cicids_dataset.csv
+â”‚
+â”œâ”€â”€ dashboard/
+â”‚   â”œâ”€â”€ app.py
+â”‚
+â”œâ”€â”€ database/
+â”‚   â”œâ”€â”€ schema.sql
+â”‚
+â”œâ”€â”€ utils/
+â”‚
+â”œâ”€â”€ requirements.txt
+â”‚
+â””â”€â”€ README.md
+18. Future Enhancements
+Differential Privacy integration.
+Secure Aggregation for encrypted model updates.
+Real-time packet capture using Wireshark/Scapy.
+Kubernetes deployment for distributed clients.
+Explainable AI (SHAP/LIME) for attack explanations.
