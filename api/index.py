@@ -99,11 +99,13 @@ class FlowPredictionRequest(BaseModel):
 
 
 @app.get("/api/health")
+@app.get("/health")
 def health():
     return {"status": "healthy", "service": "FAI-IDS", "version": "1.0.0"}
 
 
 @app.get("/api/stats")
+@app.get("/stats")
 def get_stats():
     return {
         "global_accuracy": 0.948,
@@ -123,6 +125,7 @@ def get_stats():
 
 
 @app.post("/api/predict")
+@app.post("/predict")
 def predict_flow(req: FlowPredictionRequest):
     # Construct 80 feature vector
     vec = np.zeros(80, dtype=np.float32)
